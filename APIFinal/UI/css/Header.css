@@ -1,0 +1,64 @@
+﻿.navbar {
+    background-color: #484848;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff;
+}
+.nav-item{ padding : 0 10px;}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #fbc531;
+}
+
+.navbar .navbar-nav .active > .nav-link {
+    color: #fbc531;
+}
+.admin_active{
+    cursor: pointer;
+    position: relative;
+}
+    .admin_active:hover .admin_select{
+        display: block;
+    }
+    .admin_select:hover{
+        display: block;
+    }
+    .admin_active::after {
+        content: "";
+        position: absolute;
+        top: 19px;
+        width: 130px;
+        height: 25px;
+        right: -17px;
+    }
+.admin_select {
+    display: none;
+    position: absolute;
+    width: 185px;
+    top: 38px;
+    right: -80px;
+    background: #484848;
+    border-radius: 10px;
+}
+.admin_select ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 10px 0;
+}
+.admin_select ul li {
+    color: #fff;
+    padding: 10px;
+}
+    .admin_select ul li:hover {
+        color: #fbc531;
+    }
+.center_screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+}
