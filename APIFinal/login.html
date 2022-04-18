@@ -8,20 +8,38 @@
     <link href="UI/css/LoginPage.css" />
 </head>
 <body>
+    <div v-if="isSuccess" role="alert" aria-live="assertive" aria-atomic="true" class="toast">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
     <div class="container mt-5">
+
         <div class="row d-flex justify-content-center">
             <div class="col-md-6">
+
                 <div class="card px-5 py-5" id="form1">
+
                     <div class="form-data">
                         <div class="forms-inputs mb-4">
-                            <span>Email</span> <input autocomplete="off" type="text" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
+                            <span>Email</span> <input autocomplete="off" type="text" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true" v-on:focus="isError = false">
                             <div class="invalid-feedback">A valid email is required!</div>
                         </div>
                         <div class="forms-inputs mb-4">
-                            <span>Password</span> <input autocomplete="off" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
+                            <span>Password</span> <input autocomplete="off" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true" v-on:focus="isError = false">
                             <div class="invalid-feedback">Password is required!</div>
                         </div>
-                        
+                        <div v-if="isError" class="pb-4">
+                            <span class="text-danger">Email or Password not correct</span>
+                        </div>
+
+
                         <div class="mb-3">
                             <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">
                                 <div v-if="!isLoading">Loading</div>
@@ -37,6 +55,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

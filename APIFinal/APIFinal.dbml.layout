@@ -1,17 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="APIFinal">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.25" name="APIFinal">
   <DataContextMoniker Name="/APIFinalDataContext" />
   <nestedChildShapes>
-    <classShape Id="edd5c2b5-7fcb-4c8d-bd3d-0de4918b3adf" absoluteBounds="1.875, 1.25, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/APIFinalDataContext/Customer" />
-      <nestedChildShapes>
-        <elementListCompartment Id="0a7d4423-349d-4529-9488-c505c7c49652" absoluteBounds="1.8900000000000001, 1.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="9a5fb8a7-e13e-4279-a65c-3c9d59a73d32" absoluteBounds="4.25, 1.375, 2, 1.5785953776041666">
+    <classShape Id="55146d5e-daa5-4592-b8e4-c7aa5f406fa8" absoluteBounds="0.75, 7.375, 2, 1.5785953776041657">
       <DataClassMoniker Name="/APIFinalDataContext/Admin" />
       <nestedChildShapes>
-        <elementListCompartment Id="435c4ffe-babd-404b-acd3-8e1519724d72" absoluteBounds="4.265, 1.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1ed548c4-63e5-4949-b9c4-8fe003277349" absoluteBounds="0.765, 7.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e67d5386-3659-4219-9284-13ace1749afa" absoluteBounds="0.75, 4.125, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/APIFinalDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c067c49-abb0-4d60-9555-10400853fb0f" absoluteBounds="0.765, 4.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c7feebc9-329f-4901-a832-c300218fa83a" absoluteBounds="6.25, 3, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/APIFinalDataContext/OrderItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6272d4c-714c-488a-8103-e6c1155293ae" absoluteBounds="6.265, 3.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6fc37d51-3494-48dd-a46d-9fa7c5ab646c" absoluteBounds="3.5, 3.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/APIFinalDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a3d08900-95e2-43b0-b247-c17d99dd3aa9" absoluteBounds="3.515, 4.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a6706fc4-0c0c-4cf9-b1c9-5db2997cdcee" absoluteBounds="3.5, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/APIFinalDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="94eabd4a-1f73-4bdf-bfe1-a160bf5de945" absoluteBounds="3.515, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="038cc4ea-7f6d-4594-b883-790a3ab96de0" absoluteBounds="6.25, 6.125, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/APIFinalDataContext/Transaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d23aa958-2cd8-4332-8cf8-6e37005d5477" absoluteBounds="6.265, 6.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.10179768880208); (6.25 : 4.10179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/APIFinalDataContext/Order/Order_OrderItem" />
+      <nodes>
+        <classShapeMoniker Id="6fc37d51-3494-48dd-a46d-9fa7c5ab646c" />
+        <classShapeMoniker Id="c7feebc9-329f-4901-a832-c300218fa83a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.95274983723958); (3.5 : 4.95274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/APIFinalDataContext/Customer/Customer_Order" />
+      <nodes>
+        <classShapeMoniker Id="e67d5386-3659-4219-9284-13ace1749afa" />
+        <classShapeMoniker Id="6fc37d51-3494-48dd-a46d-9fa7c5ab646c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.73159912109375); (7.25 : 1.73159912109375); (7.25 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/APIFinalDataContext/Product/Product_OrderItem" />
+      <nodes>
+        <classShapeMoniker Id="a6706fc4-0c0c-4cf9-b1c9-5db2997cdcee" />
+        <classShapeMoniker Id="c7feebc9-329f-4901-a832-c300218fa83a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 5.78049967447917); (4.5 : 7.01044840494792); (6.25 : 7.01044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/APIFinalDataContext/Order/Order_Transaction" />
+      <nodes>
+        <classShapeMoniker Id="6fc37d51-3494-48dd-a46d-9fa7c5ab646c" />
+        <classShapeMoniker Id="038cc4ea-7f6d-4594-b883-790a3ab96de0" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="847394fe-aa98-463d-8b8b-c953deee29de" absoluteBounds="0.75, 0.5, 2, 3.1170068359375">
+      <DataClassMoniker Name="/APIFinalDataContext/OrderRender" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6792628-aa80-44ca-8436-1a8c20a4c03c" absoluteBounds="0.76499999999999968, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

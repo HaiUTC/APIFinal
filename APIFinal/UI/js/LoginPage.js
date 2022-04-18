@@ -6,6 +6,7 @@
             emailBlured: false,
             valid: false,
             isError: false,
+            isSuccess: true,
             password: "",
             passwordBlured: false,
             isLoading: false,
@@ -37,35 +38,40 @@
             }
         },
 
-        submit: function () {
+        submit: async function () {
             this.validate();
             if (this.valid) {
+                let data;
                 this.isLoading = true;
-                var url = 'https://localhost:44312/api/admin?email=' +
+                const url = 'https://localhost:44312/api/admin?email=' +
                     $('input').eq(0).val() + '&password=' + $('input').eq(1).val();
-                $.ajax({
+                await $.ajax({
                     url: url,
                     method: 'POST',
                     contentType: 'json',
                     dataType: 'json',
                     error: function (response) {
-                        alert("Server Error");
                     },
                     success: function (reponse) {
-                        this.isLoading = false;
-                        if (reponse == null) {
-                            alert("Email(Usename) or Password not correct");
-                        }
-                        else {
-                            alert("Login Successfully");
-                            window.location.href = '/'
-                            localStorage.setItem("admin", JSON.stringify(reponse));
-                        }
-
+                        data = reponse;
                     }
                 });
-                
+                this.isLoading = false;
+                if (data == null) {
+                    this.isError = true;
+                }
+                else {
+                    this.isSuccess = true;
+                    $('.toast').toast('show');
+                    setTimeout(() => {
+                        localStorage.setItem("admin", JSON.stringify(data));
+                        window.location.href = '/';
+                    }, 1500);
+                    
+                    
+                }
             }
         }
     }
 });
+
