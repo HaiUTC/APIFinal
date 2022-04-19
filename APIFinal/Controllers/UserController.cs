@@ -23,7 +23,7 @@ namespace APIFinal.Controllers
             return ctx.Customers.FirstOrDefault(x => x.UserId == userId);
         }
 
-        [HttpGet]
+        [HttpPost]
         public bool AddCustomer(string name, string phone, string email, string city, string province, string detail)
         {
             try

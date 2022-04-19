@@ -1,6 +1,3 @@
-
-
-
 create database APIFinal
 
 create table Admin(
@@ -18,7 +15,7 @@ create table Customer(
 	City nvarchar(50),
 	Province nvarchar(50),
 	AddressDetail nvarchar(50),
-	Active int default(1),
+	Active int default(1), 
 )
 
 create table Product(
@@ -27,7 +24,7 @@ create table Product(
 	Price float,
 	Quantity tinyint,
 	Description nvarchar(50),
-	Status bit default(1)
+	Status bit default(1) 
 )
 
 create table Orders(
@@ -37,7 +34,7 @@ create table Orders(
 	UserId int FOREIGN KEY REFERENCES Customer(UserId),
 	Fulfillment_Status nvarchar(50) null,
 	Financial_Status nvarchar(50) default 'pending',
-	Cancel_Reason nvarchar(250),
+	Cancel_Reason nvarchar(250), 
 )
 
 create table OrderItem(

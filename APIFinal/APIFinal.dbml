@@ -27,22 +27,8 @@
       <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderId" OtherKey="OrderId" Type="Order" IsForeignKey="true" />
       <Association Name="Product_OrderItem" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Orders" Member="Orders">
-    <Type Name="Order">
-      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Fulfillment_Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Financial_Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Cancel_Reason" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderId" OtherKey="OrderId" Type="OrderItem" />
-      <Association Name="Order_Transaction" Member="Transactions" ThisKey="OrderId" OtherKey="OrderId" Type="Transaction" />
-      <Association Name="Customer_Order" Member="Customer" ThisKey="UserId" OtherKey="UserId" Type="Customer" IsForeignKey="true" />
+      <Association Name="Order_OrderItem" Member="Order" ThisKey="OrderId" OtherKey="OrderId" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Product" Member="Products">
@@ -80,6 +66,22 @@
       <Column Name="AddressDetail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Province" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fulfillment_Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Financial_Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Cancel_Reason" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ShipCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Order_OrderItem" Member="OrderItems" ThisKey="OrderId" OtherKey="OrderId" Type="OrderItem" />
+      <Association Name="Order_Transaction" Member="Transactions" ThisKey="OrderId" OtherKey="OrderId" Type="Transaction" />
+      <Association Name="Customer_Order" Member="Customer" ThisKey="UserId" OtherKey="UserId" Type="Customer" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetInfoOfOrder" Method="GetInfoOfOrder">
