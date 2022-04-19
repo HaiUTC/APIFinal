@@ -15,13 +15,18 @@ namespace APIFinal.Controllers
             APIFinalDataContext ctx = new APIFinalDataContext();
             return ctx.Customers.ToList();
         }
-
+        
         [HttpGet]
-        public Customer Customer(int userId)
+        public List<Customer> Customer(string name)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
-            return ctx.Customers.FirstOrDefault(x => x.UserId == userId);
+            if(name == "")
+            {
+                return Customers();
+            }
+            return ctx.Customers.Where(x => x.Name == name).ToList();
         }
+        
 
         [HttpPost]
         public bool AddCustomer(string name, string phone, string email, string city, string province, string detail)

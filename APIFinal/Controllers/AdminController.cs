@@ -16,7 +16,33 @@ namespace APIFinal.Controllers
             return Convert.ToBase64String(data);
         }
 
-        
+        [HttpGet]
+        public List<Admin> Admins()
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            return ctx.Admins.ToList();
+        }
+
+        [HttpDelete]
+        public bool DeleteAdmin(int id)
+        {
+            try
+            {
+                APIFinalDataContext ctx = new APIFinalDataContext();
+                Admin admin = ctx.Admins.FirstOrDefault(x => x.AdminId == id);
+                if (admin == null)
+                {
+                    return false;
+                }
+                ctx.Admins.DeleteOnSubmit(admin);
+                ctx.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         [HttpPost]
         public bool Register(string email, string username, string password)

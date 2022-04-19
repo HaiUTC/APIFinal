@@ -17,6 +17,12 @@ namespace APIFinal.Controllers
             APIFinalDataContext ctx = new APIFinalDataContext();
             return ctx.OrderRenders.ToList();
         }
+        /*[HttpGet]
+        public List<OrderRender> OrdersNotTransaction()
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            return ctx.OrderRenders.ToList().Where(x => x.Fulfillment_Status != 'success' );
+        }*/
 
         [HttpPost]
         public bool AddOrder([FromBody] OrderItemDetailsViewModel orderInfo)
@@ -77,7 +83,7 @@ namespace APIFinal.Controllers
             }
         }
 
-        public bool UpdateOrder(int id, string address)
+        public bool UpdateOrder(int id, string address, string shipcode)
         {
             try
             {
@@ -87,6 +93,7 @@ namespace APIFinal.Controllers
                 {
                     return false;
                 }
+                currentOrder.ShipCode = shipcode;
                 currentOrder.Address = address;
                 ctx.SubmitChanges();
                 return true;

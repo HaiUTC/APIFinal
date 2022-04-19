@@ -1,4 +1,4 @@
-﻿
+﻿    
 const getAllOrder = async () => {
     const url = 'https://localhost:44312/api/Order/Orders'
     await $.ajax({
@@ -18,18 +18,24 @@ const getAllOrder = async () => {
     }
     else {
         const dataAppend = '';
-        data.map(item => {
+        data.map((item, index) => {
             dataAppend += `<tr>
                 <td>${item.OrderName}</td>
                 <td>${item.UserName}</td>
                 <td>${item.AddressDetail}, ${item.Province}, ${item.City}</td>
                 <td>${item.Price}</td>
                 <td>${item.Fulfillment_Status === true ? 'Success' : 'Pending' }</td>
-                <td></td> 
+                <td>
+                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editOrder" onclick='saveDataOrderItem(${index})'>Edit</button>
+                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#removeOrder" onclick='saveDataOrderItem(${index})'>Remove</button>
+                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">Transaction</button>
+                </td>
             </tr > `
         })
     }
 }
+
+const saveDataOrderItem = (index) => { localStorage.setItem('index', index) }
 
 const addOrder = async () => {
     const url = `https://localhost:44312/api/Order/AddOrder`;

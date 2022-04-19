@@ -32,8 +32,8 @@ create table Orders(
 	Name nvarchar(50),
 	Price float,
 	UserId int FOREIGN KEY REFERENCES Customer(UserId),
-	Fulfillment_Status nvarchar(50) null,
-	Financial_Status nvarchar(50) default 'pending',
+	Fulfillment_Status nvarchar(50) null, 'success', 'pending', 'reject'
+	Financial_Status nvarchar(50) default 'pending', 'paid'
 	Cancel_Reason nvarchar(250),
 	Address nvarchar(200),
 	ShipCode nvarchar(50),
