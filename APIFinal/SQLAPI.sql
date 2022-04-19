@@ -34,7 +34,9 @@ create table Orders(
 	UserId int FOREIGN KEY REFERENCES Customer(UserId),
 	Fulfillment_Status nvarchar(50) null,
 	Financial_Status nvarchar(50) default 'pending',
-	Cancel_Reason nvarchar(250), 
+	Cancel_Reason nvarchar(250),
+	Address nvarchar(200),
+	ShipCode nvarchar(50),
 )
 
 create table OrderItem(

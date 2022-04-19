@@ -115,6 +115,7 @@
     <Content Include="customer.html" />
     <Content Include="Global.asax" />
     <Content Include="login.html" />
+    <Content Include="product.html" />
     <Content Include="SQLAPI.sql" />
     <Content Include="UI\css\Header.css" />
     <Content Include="UI\css\LoginPage.css" />

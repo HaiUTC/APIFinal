@@ -56,5 +56,45 @@ namespace APIFinal.Controllers
                 return false;
             };
         }
+
+        public bool CancelReason(int id, string cancelreason)
+        {
+            try
+            {
+                APIFinalDataContext ctx = new APIFinalDataContext();
+                Order currentOrder = ctx.Orders.FirstOrDefault(x => x.OrderId == id);
+                if (currentOrder == null)
+                {
+                    return false;
+                }
+                currentOrder.Cancel_Reason = cancelreason;
+                ctx.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateOrder(int id, string address)
+        {
+            try
+            {
+                APIFinalDataContext ctx = new APIFinalDataContext();
+                Order currentOrder = ctx.Orders.FirstOrDefault(x => x.OrderId == id);
+                if (currentOrder == null)
+                {
+                    return false;
+                }
+                currentOrder.Address = address;
+                ctx.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
