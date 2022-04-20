@@ -83,3 +83,6 @@ C:\Users\Admin\source\repos\APIFinal\APIFinal\obj\Debug\APIFinal.dll
 C:\Users\Admin\source\repos\APIFinal\APIFinal\obj\Debug\APIFinal.pdb
 C:\Users\Admin\source\repos\APIFinal\APIFinal\bin\System.Web.Http.WebHost.dll
 C:\Users\Admin\source\repos\APIFinal\APIFinal\bin\System.Web.Http.WebHost.xml
+C:\Users\Admin\source\repos\APIFinal\APIFinal\bin\System.Web.Cors.dll
+C:\Users\Admin\source\repos\APIFinal\APIFinal\bin\System.Web.Http.Cors.dll
+C:\Users\Admin\source\repos\APIFinal\APIFinal\bin\System.Web.Http.Cors.xml

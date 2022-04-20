@@ -57,20 +57,19 @@
         </nav>
     </header>
     <div class="container" id="appOrder">
-        <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#addOrder">Add product</button>
+        <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#addOrder">Add transaction</button>
 
         <table class="table table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">OrderId</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Capture</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
-            <tbody id="bodyTableProduct">
+            <tbody id="bodyTableTransaction">
             </tbody>
         </table>
         <!-- Modal add order-->
@@ -78,40 +77,24 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add transaction</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Name</label>
-                                <input type="text" class="form-control" id="NameAddProduct" placeholder="Name">
+                                <label class="form-label" for="inputEmail">Account Number</label>
+                                <input type="text" class="form-control" id="AccountNumberAddTransaction" placeholder="Account Number">
                             </div>
                             <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Price</label>
-                                <input type="number" class="form-control" id="PriceAddProduct" placeholder="Price">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Quantity</label>
-                                <input type="text" class="form-control" id="QuantityAddProduct" placeholder="Quantity">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Description</label>
-                                <textarea rows="3" class="form-control" id="DescriptionAddProduct" placeholder="Description"></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Status</label>
-                                <select class="form-select" aria-label="Default select example" id="StatusAddProduct">
-                                    <option selected>Status</option>
-                                    <option value="1">Active</option>
-                                    <option value="2">Closed</option>
-                                </select>
+                                <label class="form-label" for="inputEmail">Amount</label>
+                                <input type="number" class="form-control" id="AmountAddTransaction" placeholder="Amount">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addProduct()">Add</button>
+                        <button type="button" class="btn btn-primary" onclick="addTransaction()">Add</button>
                     </div>
                 </div>
             </div>
