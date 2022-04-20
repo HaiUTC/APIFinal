@@ -73,10 +73,10 @@ namespace APIFinal.Controllers
         }
 
         [HttpPost]
-        public Admin Login([FromBody] Admin ad)
+        public Admin Login(string email, string password)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
-            return ctx.Admins.FirstOrDefault(x => x.Email.Equals(ad.Email) && x.Password.Equals(GenerateHash(ad.Password)));
+            return ctx.Admins.FirstOrDefault(x => x.Email.Equals(email) && x.Password.Equals(GenerateHash(password)));
         }
 
         [HttpPut]

@@ -18,18 +18,16 @@ namespace APIFinal.Controllers
             return ctx.Products.ToList();
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public Product Product(int ProductId)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
             return ctx.Products.FirstOrDefault(x => x.ProductId == ProductId);
-        }*/
+        }
 
         [HttpPost]
-        public bool AddProduct([FromBody] Product pro)
+        public Product AddProduct([FromBody] Product pro)
         {
-            try
-            {
                 APIFinalDataContext ctx = new APIFinalDataContext();
                 Product product = new Product();
                 product.Name = pro.Name;
@@ -39,12 +37,8 @@ namespace APIFinal.Controllers
                 product.Status = pro.Status;
                 ctx.Products.InsertOnSubmit(product);
                 ctx.SubmitChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return product;
+            
         }
         [HttpPut]
         public bool UpdateProduct([FromBody] Product pro)
@@ -63,7 +57,7 @@ namespace APIFinal.Controllers
                 currentProduct.Description = pro.Description;
                 currentProduct.Status = pro.Status;
                 ctx.SubmitChanges();
-                return true;
+                return true; 
             }
             catch
             {
@@ -81,7 +75,7 @@ namespace APIFinal.Controllers
                 {
                     return false;
                 }
-                currentProduct.Status = (Int32.Parse(currentProduct.Status.ToString()) == 1) ? false : true;
+                currentProduct.Status = !currentProduct.Status;
                 ctx.SubmitChanges();
                 return true;
             }
