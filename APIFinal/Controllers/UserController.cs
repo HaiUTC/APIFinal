@@ -29,18 +29,18 @@ namespace APIFinal.Controllers
         
 
         [HttpPost]
-        public bool AddCustomer(string name, string phone, string email, string city, string province, string detail)
+        public bool AddCustomer([FromBody] Customer cus)
         {
             try
             {
                 APIFinalDataContext ctx = new APIFinalDataContext();
                 Customer customer = new Customer();
-                customer.Name = name;
-                customer.Email = email;
-                customer.PhoneNumber = phone;
-                customer.City = city;
-                customer.Province = province;
-                customer.AddressDetail = detail;
+                customer.Name = cus.Name;
+                customer.Email = cus.Email;
+                customer.PhoneNumber = cus.PhoneNumber;
+                customer.City = cus.City;
+                customer.Province = cus.Province;
+                customer.AddressDetail = cus.AddressDetail;
                 ctx.Customers.InsertOnSubmit(customer);
                 ctx.SubmitChanges();
                 return true;
@@ -51,22 +51,22 @@ namespace APIFinal.Controllers
             }
         }
         [HttpPut]
-        public bool UpdateCustomer(int id, string name, string phone, string email, string city, string province, string detail)
+        public bool UpdateCustomer([FromBody] Customer cus)
         {
             try
             {
                 APIFinalDataContext ctx = new APIFinalDataContext();
-                Customer currentCustomer = ctx.Customers.FirstOrDefault(x => x.UserId == id);
+                Customer currentCustomer = ctx.Customers.FirstOrDefault(x => x.UserId == cus.UserId);
                 if(currentCustomer == null)
                 {
                     return false;
                 }
-                currentCustomer.Name = name;
-                currentCustomer.Email = email;
-                currentCustomer.PhoneNumber = phone;
-                currentCustomer.City = city;
-                currentCustomer.Province = province;
-                currentCustomer.AddressDetail = detail;
+                currentCustomer.Name = cus.Name;
+                currentCustomer.Email = cus.Email;
+                currentCustomer.PhoneNumber = cus.PhoneNumber;
+                currentCustomer.City = cus.City;
+                currentCustomer.Province = cus.Province;
+                currentCustomer.AddressDetail = cus.AddressDetail;
                 ctx.SubmitChanges();
                 return true;
             }

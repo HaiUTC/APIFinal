@@ -42,21 +42,21 @@ namespace APIFinal.Controllers
             {
                 return false;
             }
-        }
+        } 
 
         [HttpPost]
-        public bool Register(string email, string username, string password)
+        public bool Register([FromBody] Admin ad)
         {
             try
             {
                 APIFinalDataContext ctx = new APIFinalDataContext();
-                Admin checkExistAdmin = ctx.Admins.FirstOrDefault(x => x.Email.Equals(email));
+                Admin checkExistAdmin = ctx.Admins.FirstOrDefault(x => x.Email.Equals(ad.Email));
                 if(checkExistAdmin == null)
                 {
                     Admin admin = new Admin();
-                    admin.UserName = username;
-                    admin.Email = email;
-                    admin.Password = GenerateHash(password);
+                    admin.UserName = ad.UserName;
+                    admin.Email = ad.Email;
+                    admin.Password = GenerateHash(ad.Password);
                     ctx.Admins.InsertOnSubmit(admin);
                     ctx.SubmitChanges();
                     return true;
@@ -73,14 +73,14 @@ namespace APIFinal.Controllers
         }
 
         [HttpPost]
-        public Admin Login(string email, string password)
+        public Admin Login([FromBody] Admin ad)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
-            return ctx.Admins.FirstOrDefault(x => x.Email.Equals(email) && x.Password.Equals(GenerateHash(password)));
+            return ctx.Admins.FirstOrDefault(x => x.Email.Equals(ad.Email) && x.Password.Equals(GenerateHash(ad.Password)));
         }
 
         [HttpPut]
-        public bool ChangePassword(int adminId, string newPassword)
+        public bool ChangePassword([FromBody]  int adminId, string newPassword)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
             Admin currentAdmin = ctx.Admins.FirstOrDefault(x => x.AdminId == adminId);

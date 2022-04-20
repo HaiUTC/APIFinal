@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin.html" />
     <Content Include="customer.html" />
     <Content Include="Global.asax" />
     <Content Include="login.html" />
@@ -127,8 +128,12 @@
     <Content Include="UI\css\Header.css" />
     <Content Include="UI\css\LoginPage.css" />
     <Content Include="Index.html" />
+    <Content Include="UI\js\Admin.js" />
+    <Content Include="UI\js\CustomerPage.js" />
     <Content Include="UI\js\IndexPage.js" />
     <Content Include="UI\js\LoginPage.js" />
+    <Content Include="UI\js\ProductPage.js" />
+    <Content Include="UI\js\TransactionPage.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -10,7 +10,6 @@ namespace APIFinal.Controllers
 {
     public class OrderController : ApiController
     {
-        // GET: Order
         [HttpGet]
         public List<OrderRender> Orders()
         {
@@ -63,6 +62,7 @@ namespace APIFinal.Controllers
             };
         }
 
+        [HttpPut]
         public bool CancelReason(int id, string cancelreason)
         {
             try
@@ -83,6 +83,7 @@ namespace APIFinal.Controllers
             }
         }
 
+        [HttpPut]
         public bool UpdateOrder(int id, string address, string shipcode)
         {
             try
