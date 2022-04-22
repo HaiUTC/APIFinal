@@ -17,7 +17,7 @@
                 <td>${item.Account_Number}</td>
                 <td>${item.OderId}</td>
                 <td>${item.Amount}</td>
-                <td>${item.isCapture}</td>
+                <td>${item.isCapture ? 'Success' : 'Pending'}</td>
                 <td>
                        <button class="btn btn-secondary"
                         data-bs-toggle="modal"
@@ -27,6 +27,11 @@
                     <button class="btn btn-primary"
                     onclick="deleteTransaction(${item.TransactionId})">
                         Delete</button>
+                    <button class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#triggerTransaction"
+                    onclick="triggerTransaction()">
+                        Transaction</button>
                 </td>                    
             </tr > `
         })
@@ -52,7 +57,7 @@ const addTransaction = async () => {
                 <td>${dataResponse.Account_Number}</td>
                 <td>${dataResponse.OrderId}</td>
                 <td>${dataResponse.Amount}</td>
-                <td>${dataResponse.isCapture}</td>
+                <td>${dataResponse.isCapture ? 'Success' : 'Pending'}</td>
 
                 <td>
                     <button class="btn btn-secondary"

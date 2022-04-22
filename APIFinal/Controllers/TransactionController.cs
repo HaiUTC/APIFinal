@@ -33,7 +33,6 @@ namespace APIFinal.Controllers
                 ctx.Transactions.InsertOnSubmit(transaction);
                 ctx.SubmitChanges();
                 return transaction;
-
         }
     }
 }

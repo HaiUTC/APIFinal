@@ -11,17 +11,15 @@ namespace APIFinal.Controllers
     public class OrderController : ApiController
     {
         [HttpGet]
-        public List<OrderRender> Orders()
+        public List<OrderRender> Orders(string typeQuery)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
-            return ctx.OrderRenders.ToList();
+            if(typeQuery == "all")
+            {
+                return ctx.OrderRenders.ToList();
+            }
+            return ctx.OrderRenders.Where(x => x.Fulfillment_Status != "success").ToList();
         }
-        /*[HttpGet]
-        public List<OrderRender> OrdersNotTransaction()
-        {
-            APIFinalDataContext ctx = new APIFinalDataContext();
-            return ctx.OrderRenders.ToList().Where(x => x.Fulfillment_Status != 'success' );
-        }*/
 
         [HttpPost]
         public bool AddOrder([FromBody] OrderItemDetailsViewModel orderInfo)

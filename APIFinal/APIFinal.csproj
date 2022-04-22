@@ -129,6 +129,7 @@
     <Content Include="UI\css\Header.css" />
     <Content Include="UI\css\LoginPage.css" />
     <Content Include="Index.html" />
+    <Content Include="UI\js\AddOdrer.js" />
     <Content Include="UI\js\Admin.js" />
     <Content Include="UI\js\CustomerPage.js" />
     <Content Include="UI\js\IndexPage.js" />

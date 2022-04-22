@@ -84,7 +84,6 @@ const addProduct = async () => {
                         data-bs-target="#editProduct"
                         onclick="saveDataOrderItem(${dataResponse.ProductId})">
                         Edit</button>
-              
                     <button
                         class="btn btn-danger"
                         onclick='deleteProduct(${dataResponse.ProductId})'>Delete</button>
