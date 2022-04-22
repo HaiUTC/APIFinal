@@ -23,13 +23,35 @@ namespace APIFinal.Controllers
             return ctx.Admins.ToList();
         }
 
+        [HttpGet]
+        public Admin Admins(int AdminId)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            return ctx.Admins.FirstOrDefault(x => x.AdminId == AdminId);
+        }
+
+        [HttpPut]
+        public Admin UpdateAdmin([FromBody] Admin ad)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            Admin currentAdmin = ctx.Admins.FirstOrDefault(x => x.AdminId == ad.AdminId);
+            if (currentAdmin == null)
+            {
+                return null;
+            }
+            currentAdmin.UserName = ad.UserName;
+            currentAdmin.Password = ad.Password;
+            currentAdmin.Email = ad.Email;
+            ctx.SubmitChanges();
+            return currentAdmin;
+        }
         [HttpDelete]
-        public bool DeleteAdmin(int id)
+        public bool DeleteAdmin(int AdminId)
         {
             try
             {
                 APIFinalDataContext ctx = new APIFinalDataContext();
-                Admin admin = ctx.Admins.FirstOrDefault(x => x.AdminId == id);
+                Admin admin = ctx.Admins.FirstOrDefault(x => x.AdminId == AdminId);
                 if (admin == null)
                 {
                     return false;

@@ -7,6 +7,7 @@
         },
     })
     const data = await response.json();
+    $('#ProductIdEditProduct').val(data.ProductId),
     $('#NameEditProduct').val(data.Name),
         $('#PriceEditProduct').val(data.Price),
         $('#QuantityEditProduct').val(data.Quantity),
@@ -15,20 +16,6 @@
 
 }
 
-const toggleProduct = async (id) => {
-    const response = await fetch(`https://localhost:44312/api/Product/ToggleProduct?id=${id}`, {
-        method: 'PUT',
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-    })
-    const data = await response.json();
-    if (data === true) {
-        $(`#toggle_${id}`).text($(`#toggle_${id}`).text() === 'Disable' ? 'Enable' : 'Disable');
-        $(`#status_${id}`).text($(`#status_${id}`).text() === 'Active' ? 'Closed' : 'Active');
-    }
-}
 
 const getAllProduct = async () => {
     const response = await fetch('https://localhost:44312/api/Product/Products', {
@@ -57,12 +44,6 @@ const getAllProduct = async () => {
                         data-bs-target="#editProduct"
                         onclick="saveDataOrderItem(${item.ProductId})">
                         Edit</button>
-                    <button
-                        class="btn btn-secondary"
-                        id="toggle_${item.ProductId}" 
-                        data-bs-toggle="modal"
-                        data-bs-target="#toggleProduct"
-                        onclick='toggleProduct(${item.ProductId})'>${item.Status === true ? 'Disable' : 'Enable'}</button>
                     <button
                         class="btn btn-danger"
                         onclick='deleteProduct(${item.ProductId})'>Delete</button>
@@ -103,10 +84,10 @@ const addProduct = async () => {
                         data-bs-target="#editProduct"
                         onclick="saveDataOrderItem(${dataResponse.ProductId})">
                         Edit</button>
-                    <button class="btn btn-secondary" id="toggle_${dataResponse.ProductId}" data-bs-toggle="modal" data-bs-target="#toggleProduct" onclick='toggleProduct(${dataResponse.ProductId})'>${dataResponse.Status === true ? 'Disable' : 'Enable'}</button>
+              
                     <button
                         class="btn btn-danger"
-                        onclick='deleteProduct(${item.ProductId})'>Delete</button>
+                        onclick='deleteProduct(${dataResponse.ProductId})'>Delete</button>
                 </td>
             </tr > `
     $('#bodyTableProduct').append(dataAppend);
@@ -121,8 +102,26 @@ const resetDataForm = () => {
     $('#StatusAddProduct').val('')
 }
 
-const editProduct = () => {
-    
+const editProduct = async () => {
+    const data = {
+        ProductId: $('#ProductIdEditProduct').val(),
+        Name: $('#NameEditProduct').val(),
+        Price: $('#PriceEditProduct').val(),
+        Quantity: $('#QuantityEditProduct').val(),
+        Description: $('#DescriptionEditProduct').val(),
+        Status: $('#StatusEditProduct').val(),
+    }
+    const url = `https://localhost:44312/api/Product/UpdateProduct`;
+        await fetch(url, {
+            method: 'PUT',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+    resetDataForm();
+    window.location.reload();
 }
 
 const deleteProduct = async (id) => {
@@ -136,7 +135,7 @@ const deleteProduct = async (id) => {
     })
     const dataResponse = await response.json();
     if (dataResponse) {
-        //TODO REmove item out of dom
+        window.location.reload();
     }
 }
 

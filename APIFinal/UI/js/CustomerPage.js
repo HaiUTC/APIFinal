@@ -93,20 +93,6 @@ const editCustomer = async () => {
     resetDataForm();
     window.location.reload();
 }
-const toggelCustomer = async (id) => {
-    const response = await fetch(`https://localhost:44312/api/User/ToggleActiveCustomer?UserId=${id}`, {
-        method: 'PUT',
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-    })
-    const data = await response.json();
-    if (data === true) {
-        $(`#toggle_${id}`).text($(`#toggle_${id}`).text() === 'Disable' ? 'Enable' : 'Disable');
-        $(`#status_${id}`).text($(`#status_${id}`).text() === 'Active' ? 'Closed' : 'Active');
-    }
-}
 const saveDataCustomerItem = async (id) => {
     const response = await fetch(`https://localhost:44312/api/User/Customer?UserId=${id}`, {
         method: 'GET',
@@ -135,7 +121,18 @@ const resetDataForm = () => {
     $('#ActiveAddCustomer').val('')
 }
 const deleteCustomer = async (id) => {
-
+    const url = `https://localhost:44312/api/User/DeleteCustomer?UserId=${id}`;
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+    })
+    const dataResponse = await response.json();
+    if (dataResponse) {
+        window.location.reload()
+    }
 }
 $(document).ready(function () {
     localStorage.getItem("admin") === null ? (window.location.href = '/login.html') : null;

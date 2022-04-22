@@ -87,7 +87,7 @@ namespace APIFinal.Controllers
         public bool DeleteCustomer(int UserId)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
-            var checkExistCustomerHaveOdrer = ctx.Orders.Where(x => x.UserId == UserId);
+            var checkExistCustomerHaveOdrer = ctx.Orders.FirstOrDefault(x => x.UserId == UserId);
             if (checkExistCustomerHaveOdrer != null)
             {
                 return false;

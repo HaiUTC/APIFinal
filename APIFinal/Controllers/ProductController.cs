@@ -64,32 +64,12 @@ namespace APIFinal.Controllers
                 return false;
             }
         }
-        [HttpPut]
-        public bool ToggleProduct(int id)
-        {
-            try
-            {
-                APIFinalDataContext ctx = new APIFinalDataContext();
-                Product currentProduct = ctx.Products.FirstOrDefault(x => x.ProductId == id);
-                if (currentProduct == null)
-                {
-                    return false;
-                }
-                currentProduct.Status = !currentProduct.Status;
-                ctx.SubmitChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
         [HttpDelete]
         public bool DeleteProduct(int ProductId)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();
-            var checkExistProductHaveOdrer = ctx.OrderItems.Where(x => x.ProductId == ProductId);
+            var checkExistProductHaveOdrer = ctx.OrderItems.FirstOrDefault(x => x.ProductId == ProductId);
             if (checkExistProductHaveOdrer != null)
             {
                 return false;
