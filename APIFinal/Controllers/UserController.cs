@@ -82,5 +82,22 @@ namespace APIFinal.Controllers
                 return false;
             }
         }
+
+        [HttpDelete]
+        public bool DeleteCustomer(int UserId)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            var checkExistCustomerHaveOdrer = ctx.Orders.Where(x => x.UserId == UserId);
+            if (checkExistCustomerHaveOdrer != null)
+            {
+                return false;
+            }
+
+            var customer = ctx.Customers.FirstOrDefault(x => x.UserId == UserId);
+            ctx.Customers.DeleteOnSubmit(customer);
+            ctx.SubmitChanges();
+            return true;
+        }
+
     }
 }

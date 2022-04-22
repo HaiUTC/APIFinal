@@ -65,7 +65,7 @@ namespace APIFinal.Controllers
             }
         }
         [HttpPut]
-        public bool DeleteProduct(int id)
+        public bool ToggleProduct(int id)
         {
             try
             {
@@ -83,6 +83,22 @@ namespace APIFinal.Controllers
             {
                 return false;
             }
+        }
+
+        [HttpDelete]
+        public bool DeleteProduct(int ProductId)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            var checkExistProductHaveOdrer = ctx.OrderItems.Where(x => x.ProductId == ProductId);
+            if (checkExistProductHaveOdrer != null)
+            {
+                return false;
+            }
+
+            var product = ctx.Products.FirstOrDefault(x => x.ProductId == ProductId);
+            ctx.Products.DeleteOnSubmit(product);
+            ctx.SubmitChanges();
+            return true;
         }
 
     }

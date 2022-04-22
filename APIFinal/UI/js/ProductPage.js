@@ -16,7 +16,7 @@
 }
 
 const toggleProduct = async (id) => {
-    const response = await fetch(`https://localhost:44312/api/Product/DeleteProduct?id=${id}`, {
+    const response = await fetch(`https://localhost:44312/api/Product/ToggleProduct?id=${id}`, {
         method: 'PUT',
         headers: {
             Accept: "application/json",
@@ -57,7 +57,15 @@ const getAllProduct = async () => {
                         data-bs-target="#editProduct"
                         onclick="saveDataOrderItem(${item.ProductId})">
                         Edit</button>
-                    <button class="btn btn-secondary" id="toggle_${item.ProductId}" data-bs-toggle="modal" data-bs-target="#toggleProduct" onclick='toggleProduct(${item.ProductId})'>${item.Status === true ? 'Disable' : 'Enable'}</button>
+                    <button
+                        class="btn btn-secondary"
+                        id="toggle_${item.ProductId}" 
+                        data-bs-toggle="modal"
+                        data-bs-target="#toggleProduct"
+                        onclick='toggleProduct(${item.ProductId})'>${item.Status === true ? 'Disable' : 'Enable'}</button>
+                    <button
+                        class="btn btn-danger"
+                        onclick='deleteProduct(${item.ProductId})'>Delete</button>
                 </td>
             </tr > `
         })
@@ -96,6 +104,9 @@ const addProduct = async () => {
                         onclick="saveDataOrderItem(${dataResponse.ProductId})">
                         Edit</button>
                     <button class="btn btn-secondary" id="toggle_${dataResponse.ProductId}" data-bs-toggle="modal" data-bs-target="#toggleProduct" onclick='toggleProduct(${dataResponse.ProductId})'>${dataResponse.Status === true ? 'Disable' : 'Enable'}</button>
+                    <button
+                        class="btn btn-danger"
+                        onclick='deleteProduct(${item.ProductId})'>Delete</button>
                 </td>
             </tr > `
     $('#bodyTableProduct').append(dataAppend);
@@ -108,6 +119,25 @@ const resetDataForm = () => {
     $('#QuantityAddProduct').val('');
     $('#DescriptionAddProduct').val(''),
     $('#StatusAddProduct').val('')
+}
+
+const editProduct = () => {
+    
+}
+
+const deleteProduct = async (id) => {
+    const url = `https://localhost:44312/api/Product/DeleteProduct?ProductId=${id}`;
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+    })
+    const dataResponse = await response.json();
+    if (dataResponse) {
+        //TODO REmove item out of dom
+    }
 }
 
 $(document).ready(function () {

@@ -25,7 +25,7 @@
                         data-bs-target="#editCustomer"
                         onclick="saveDataCustomerItem(${item.UserId})">
                         Edit</button>
-                    
+                    <button class='btn btn-danger' onclick='deleteCustomer(${item.UserId})'>Delete</button>
                 </td>
             </tr > `
         })
@@ -134,7 +134,9 @@ const resetDataForm = () => {
     $('#AddressDetailAddCustomer').val('')
     $('#ActiveAddCustomer').val('')
 }
+const deleteCustomer = async (id) => {
 
+}
 $(document).ready(function () {
     localStorage.getItem("admin") === null ? (window.location.href = '/login.html') : null;
     $('#logout').click(() => {
