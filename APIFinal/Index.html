@@ -57,7 +57,7 @@
         </nav>
     </header>
     <div class="container" id="appOrder">
-        <button type="button" class="btn btn-secondary my-4" data-bs-toggle="modal" data-bs-target="#addOrder">Add order</button>
+        <button type="button" class="btn btn-secondary my-4" data-bs-toggle="modal" data-bs-target="#addOrder" onclick="changeRoute()">Add order</button>
 
         <table class="table table-hover">
             <thead class="table-dark">
@@ -72,45 +72,6 @@
             </thead>
             <tbody id="bodyTableOrder"></tbody>
         </table>
-        <!-- Modal add order-->
-        <div class="modal fade" id="addOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add order</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Name</label>
-                                <input type="text" class="form-control" id="NameAddOrder" placeholder="Name">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Price</label>
-                                <input type="number" class="form-control" id="inputEmail" placeholder="Price">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">UserId</label>
-                                <input type="text" class="form-control" id="userIdAddOrder" placeholder="UserId">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">Address</label>
-                                <textarea rows="3" class="form-control" id="inputEmail" placeholder="Address"></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="inputEmail">ShipCode</label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="ShipCode">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addOrder()">Add</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Modal edit order-->
         <div class="modal fade" id="editOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

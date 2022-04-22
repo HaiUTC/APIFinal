@@ -1,4 +1,6 @@
-﻿    
+﻿const changeRoute = () => {
+    window.location.replace('/AddOrder.html');
+}
 const getAllOrder = async () => {
     const url = 'https://localhost:44312/api/Order/Orders'
     await $.ajax({

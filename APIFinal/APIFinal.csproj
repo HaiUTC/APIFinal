@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddOrder.html" />
     <Content Include="admin.html" />
     <Content Include="customer.html" />
     <Content Include="Global.asax" />
