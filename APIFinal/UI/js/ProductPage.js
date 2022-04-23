@@ -1,4 +1,7 @@
-﻿const saveDataOrderItem = async (id) => {
+﻿const goToAdmin = () => {
+    window.location.replace('/admin.html');
+}
+const saveDataOrderItem = async (id) => {
     const response = await fetch(`https://localhost:44312/api/Product/Product?ProductId=${id}`, {
         method: 'GET',
         headers: {

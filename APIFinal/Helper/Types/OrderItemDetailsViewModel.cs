@@ -16,6 +16,10 @@ namespace APIFinal.Helper.Types
     {
         public int UserId { get; set; }
         public string Name { get; set; }
+
+        public string Address { get; set; }
+        public string ShipCode { get; set; }
+
     }
     public class OrderItemDetailsViewModel
     {

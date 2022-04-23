@@ -1,4 +1,7 @@
-﻿const getAllCustomer = async () => {
+﻿const goToAdmin = () => {
+    window.location.replace('/admin.html');
+}
+const getAllCustomer = async () => {
     const response = await fetch('https://localhost:44312/api/User/Customers', {
         method: 'GET',
         headers: {

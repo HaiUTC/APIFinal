@@ -45,7 +45,7 @@
                     <i class="fa-solid fa-user mr-2"></i>  Thanh Hai
                     <div class="admin_select">
                         <ul>
-                            <li><i class="fa-solid fa-users mr-2"></i> All Admin</li>
+                            <li><i class="fa-solid fa-users mr-2" onclick="goToAdmin()"></i> All Admin</li>
                             <li><i class="fa-solid fa-lock-keyhole mr-2"></i>  Change Password</li>
                             <li id="logout"><i class="fa-solid fa-right-from-bracket mr-2"></i>  Logout</li>
                         </ul>
@@ -82,19 +82,20 @@
                     </div>
                     <div class="modal-body">
                         <form>
+                            <input hidden id="orderIdEditOrder"/>
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">Address</label>
-                                <textarea rows="3" class="form-control" id="inputEmail" placeholder="Address" value=`${}`></textarea>
+                                <textarea rows="3" class="form-control" id="addressEditOrder" placeholder="Address" value=`${}`></textarea>
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">ShipCode</label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="ShipCode">
+                                <input type="text" class="form-control" id="shipcodeEditOrder" placeholder="ShipCode">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addOrder()">Edit</button>
+                        <button type="button" class="btn btn-primary" onclick="editOrder()">Edit</button>
                     </div>
                 </div>
             </div>

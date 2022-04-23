@@ -32,8 +32,8 @@ create table Orders(
 	Name nvarchar(50),
 	Price float,
 	UserId int FOREIGN KEY REFERENCES Customer(UserId),
-	Fulfillment_Status nvarchar(50) null, 'success', 'pending', 'reject'
-	Financial_Status nvarchar(50) default 'pending', 'paid'
+	Fulfillment_Status nvarchar(50) null,
+	Financial_Status nvarchar(50) default,
 	Cancel_Reason nvarchar(250),
 	Address nvarchar(200),
 	ShipCode nvarchar(50),
@@ -77,8 +77,8 @@ begin
 end
 
 
-create view OrderRender as
-select o.OrderId, o.Name as OrderName, o.Cancel_Reason,o.Financial_Status, o.Fulfillment_Status, o.Price, o.UserId, c.Name as UserName, c.PhoneNumber,c.AddressDetail, c.City, c.Province
+alter view OrderRender as
+select o.OrderId, o.Name as OrderName, o.Cancel_Reason,o.Financial_Status, o.Fulfillment_Status, o.Price, o.UserId, c.Name as UserName, c.PhoneNumber,o.Address, o.ShipCode
 from Orders o inner join Customer c
 on o.UserId = c.UserId
 

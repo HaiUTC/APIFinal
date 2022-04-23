@@ -120,19 +120,19 @@ namespace APIFinal
 			}
 		}
 		
-		public System.Data.Linq.Table<OrderRender> OrderRenders
-		{
-			get
-			{
-				return this.GetTable<OrderRender>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Order> Orders
 		{
 			get
 			{
 				return this.GetTable<Order>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderRender> OrderRenders
+		{
+			get
+			{
+				return this.GetTable<OrderRender>();
 			}
 		}
 		
@@ -1161,231 +1161,6 @@ namespace APIFinal
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderRender")]
-	public partial class OrderRender
-	{
-		
-		private int _OrderId;
-		
-		private string _OrderName;
-		
-		private string _Cancel_Reason;
-		
-		private string _Financial_Status;
-		
-		private string _Fulfillment_Status;
-		
-		private System.Nullable<double> _Price;
-		
-		private System.Nullable<int> _UserId;
-		
-		private string _UserName;
-		
-		private string _PhoneNumber;
-		
-		private string _AddressDetail;
-		
-		private string _City;
-		
-		private string _Province;
-		
-		public OrderRender()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderId", DbType="Int NOT NULL")]
-		public int OrderId
-		{
-			get
-			{
-				return this._OrderId;
-			}
-			set
-			{
-				if ((this._OrderId != value))
-				{
-					this._OrderId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderName", DbType="NVarChar(50)")]
-		public string OrderName
-		{
-			get
-			{
-				return this._OrderName;
-			}
-			set
-			{
-				if ((this._OrderName != value))
-				{
-					this._OrderName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cancel_Reason", DbType="NVarChar(250)")]
-		public string Cancel_Reason
-		{
-			get
-			{
-				return this._Cancel_Reason;
-			}
-			set
-			{
-				if ((this._Cancel_Reason != value))
-				{
-					this._Cancel_Reason = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Financial_Status", DbType="NVarChar(50)")]
-		public string Financial_Status
-		{
-			get
-			{
-				return this._Financial_Status;
-			}
-			set
-			{
-				if ((this._Financial_Status != value))
-				{
-					this._Financial_Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fulfillment_Status", DbType="NVarChar(50)")]
-		public string Fulfillment_Status
-		{
-			get
-			{
-				return this._Fulfillment_Status;
-			}
-			set
-			{
-				if ((this._Fulfillment_Status != value))
-				{
-					this._Fulfillment_Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float")]
-		public System.Nullable<double> Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
-		public System.Nullable<int> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(100)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this._UserName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(12)")]
-		public string PhoneNumber
-		{
-			get
-			{
-				return this._PhoneNumber;
-			}
-			set
-			{
-				if ((this._PhoneNumber != value))
-				{
-					this._PhoneNumber = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddressDetail", DbType="NVarChar(100)")]
-		public string AddressDetail
-		{
-			get
-			{
-				return this._AddressDetail;
-			}
-			set
-			{
-				if ((this._AddressDetail != value))
-				{
-					this._AddressDetail = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(100)")]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this._City = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Province", DbType="NVarChar(100)")]
-		public string Province
-		{
-			get
-			{
-				return this._Province;
-			}
-			set
-			{
-				if ((this._Province != value))
-				{
-					this._Province = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Orders")]
 	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1734,6 +1509,213 @@ namespace APIFinal
 		{
 			this.SendPropertyChanging();
 			entity.Order = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderRender")]
+	public partial class OrderRender
+	{
+		
+		private int _OrderId;
+		
+		private string _OrderName;
+		
+		private string _Cancel_Reason;
+		
+		private string _Financial_Status;
+		
+		private string _Fulfillment_Status;
+		
+		private System.Nullable<double> _Price;
+		
+		private System.Nullable<int> _UserId;
+		
+		private string _UserName;
+		
+		private string _PhoneNumber;
+		
+		private string _Address;
+		
+		private string _ShipCode;
+		
+		public OrderRender()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderId", DbType="Int NOT NULL")]
+		public int OrderId
+		{
+			get
+			{
+				return this._OrderId;
+			}
+			set
+			{
+				if ((this._OrderId != value))
+				{
+					this._OrderId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderName", DbType="NVarChar(50)")]
+		public string OrderName
+		{
+			get
+			{
+				return this._OrderName;
+			}
+			set
+			{
+				if ((this._OrderName != value))
+				{
+					this._OrderName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cancel_Reason", DbType="NVarChar(250)")]
+		public string Cancel_Reason
+		{
+			get
+			{
+				return this._Cancel_Reason;
+			}
+			set
+			{
+				if ((this._Cancel_Reason != value))
+				{
+					this._Cancel_Reason = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Financial_Status", DbType="NVarChar(50)")]
+		public string Financial_Status
+		{
+			get
+			{
+				return this._Financial_Status;
+			}
+			set
+			{
+				if ((this._Financial_Status != value))
+				{
+					this._Financial_Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fulfillment_Status", DbType="NVarChar(50)")]
+		public string Fulfillment_Status
+		{
+			get
+			{
+				return this._Fulfillment_Status;
+			}
+			set
+			{
+				if ((this._Fulfillment_Status != value))
+				{
+					this._Fulfillment_Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float")]
+		public System.Nullable<double> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(100)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(12)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this._PhoneNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(250)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipCode", DbType="NVarChar(50)")]
+		public string ShipCode
+		{
+			get
+			{
+				return this._ShipCode;
+			}
+			set
+			{
+				if ((this._ShipCode != value))
+				{
+					this._ShipCode = value;
+				}
+			}
 		}
 	}
 	

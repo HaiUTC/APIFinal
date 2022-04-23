@@ -31,27 +31,25 @@ const addProductSelect = async () => {
         },
     })
     const data = await response.json();
-    const listProduct = JSON.parse(localStorage.getItem('listProduct'));
-    console.log(listProduct);
-    if (!listProduct) {
-        localStorage.setItem('listProduct', JSON.stringify(0));
+    let listProduct = JSON.parse(localStorage.getItem('listProduct'));
+    if (listProduct === null) {
+        listProduct = 0;
+        localStorage.setItem('listProduct', JSON.stringify(1));
     } else {
-   
         localStorage.setItem('listProduct', JSON.stringify(listProduct + 1));
     }
-    const sizeOfList = listProduct?.length || 0;
     let dataAppendChild;
     const dataAppend = `
      <div style="display: flex; flex-wrap: wrap" class="mb-3">
                     <div style="flex: 1">
                         <label class="form-label" for="inputEmail">Product</label>
-                        <select class="form-select" aria-label="Default select example" id="productAdd_${sizeOfList}">
+                        <select class="form-select" aria-label="Default select example" id="productAdd_${listProduct}">
                             <option selected>Chooes one products</option>
                         </select>
                     </div>
                     <div style="flex: 1; margin-left: 10px;">
                         <label class="form-label" for="inputEmail">Quantity</label>
-                        <input type="number" class="form-control" id="quantitySelect_${sizeOfList}">
+                        <input type="number" class="form-control" id="quantitySelect_${listProduct}">
                     </div>
                 </div>
 `
@@ -60,22 +58,40 @@ const addProductSelect = async () => {
     })
     
     $('#listProductSelect').append(dataAppend);
-    $(`#productAdd_${sizeOfList}`).append(dataAppendChild);
+    $(`#productAdd_${listProduct}`).append(dataAppendChild);
 }
 
 const handleAddOrder = async () => {
     const listProduct = JSON.parse(localStorage.getItem('listProduct'));
-    const sizeOfList = listProduct?.length || 0;
     const data = [];
-    for (let i = 0; i < sizeOfList; i++) {
+    for (let i = 0; i < listProduct; i++) {
         const dataElement = {
-            ProductId: $(`#productAdd_${i}`).val(),
-            Quantity: +$(`#quantitySelect_${i}`).val(),
+            ProductId: Number.parseInt($(`#productAdd_${i}`).val()),
+            Quantity: Number.parseInt($(`#quantitySelect_${i}`).val()),
         }
         data.push(dataElement);
     }
-    console.log(data);
     localStorage.removeItem('listProduct');
+
+    const url = `https://localhost:44312/api/Order/AddOrder`;
+    const dataReq = {
+        userInfo: {
+            UserId: $('#userAddOrder').val(),
+            Name: $('#nameAddOrder').val(),
+            Address: $('#AddressAddOrder').val(),
+            ShipCode: $('#shipCodeAddOrder').val(),
+        },
+        itemDetails: data,
+    }
+    await fetch(url, {
+        method: 'POST',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataReq),
+    })
+    window.location.replace('/');
 }
 $(document).ready(function () {
     localStorage.getItem("admin") === null ? (window.location.href = '/login.html') : null;
@@ -84,4 +100,5 @@ $(document).ready(function () {
         window.location.href = '/login.html'
     })
     getAllCustomer();
+    localStorage.removeItem('listProduct');
 })

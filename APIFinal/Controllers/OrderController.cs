@@ -17,8 +17,18 @@ namespace APIFinal.Controllers
             if(typeQuery == "all")
             {
                 return ctx.OrderRenders.ToList();
-            }
-            return ctx.OrderRenders.Where(x => x.Fulfillment_Status != "success").ToList();
+            } 
+                return ctx.OrderRenders.Where(x => x.Fulfillment_Status != "success").ToList();
+            
+
+
+        }
+
+        [HttpGet]
+        public Order Order(int OrderId)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            return ctx.Orders.FirstOrDefault(x => x.OrderId == OrderId);
         }
 
         [HttpPost]
@@ -39,6 +49,8 @@ namespace APIFinal.Controllers
                     newCustomerOrder.UserId = orderInfo.userInfo.UserId;
                     newCustomerOrder.Name = orderInfo.userInfo.Name;
                     newCustomerOrder.Price = totalPrice;
+                    newCustomerOrder.Address = orderInfo.userInfo.Address;
+                    newCustomerOrder.ShipCode = orderInfo.userInfo.ShipCode;
                     ctx.Orders.InsertOnSubmit(newCustomerOrder);
                     ctx.SubmitChanges();
 
