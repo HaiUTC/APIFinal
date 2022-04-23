@@ -19,6 +19,51 @@ const saveDataOrderItem = async (id) => {
 
 }
 
+const handleSearch = async () => {
+    const name = $('#searchProduct').val();
+    if (name !== "" || name !== null) {
+        const url = `https://localhost:44312/api/Product/SearchProduct?name=${name}`;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+        const data = await response.json();
+        if (data.length === 0) {
+            $('#appProduct').html('<div style="display: flex; justify-content=center; padding-top: 15px;">Not have customer in store</div>')
+        }
+        else {
+            let dataAppend = '';
+            data.map((item, index) => {
+                dataAppend += `<div class="card" style="width: 18rem;">
+                    <img src=${item.Picture} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.Name}</h5>
+                        <p class="card-text">${item.Description}.</p>
+                        <p class="card-text">$${item.Price}.</p>
+                        <p class="card-text">Quantity: ${item.Quantity}.</p>
+                        <p>
+                            <button class="btn btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editProduct"
+                        onclick="saveDataOrderItem(${item.ProductId})">
+                        Edit</button>
+                    <button
+                        class="btn btn-danger"
+                        onclick='deleteProduct(${item.ProductId})'>Delete</button>
+                        </p>
+                    </div>
+                </div>`
+            })
+            $('#appProduct').html(dataAppend);
+        }
+    } else {
+        getAllProduct();
+    }
+
+}
 
 const getAllProduct = async () => {
     const response = await fetch('https://localhost:44312/api/Product/Products', {
@@ -30,19 +75,20 @@ const getAllProduct = async () => {
     })
     const data = await response.json();
     if (data.length === 0) {
-        $('#bodyTableProduct').append('<div style="display: flex; justify-content=center; padding-top: 15px;">Not have product in store</div>');
+        $('#appProduct').append('<div style="display: flex; justify-content=center; padding-top: 15px;">Not have product in store</div>');
     }
     else {
         let dataAppend = '';
         data.map((item, index) => {
-            dataAppend += `<tr>
-                <td>${item.Name}</td>
-                <td>${item.Price}</td>
-                <td>${item.Quantity}</td>
-                <td>${item.Description}</td>
-                <td id="status_${item.ProductId}">${item.Status === true ? 'Active' : 'Closed'}</td>
-                <td>
-                    <button class="btn btn-secondary"
+            dataAppend += `<div class="card" style="width: 18rem;">
+                    <img src=${item.Picture} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.Name}</h5>
+                        <p class="card-text">${item.Description}.</p>
+                        <p class="card-text">$${item.Price}.</p>
+                        <p class="card-text">Quantity: ${item.Quantity}.</p>
+                        <p>
+                            <button class="btn btn-secondary"
                         data-bs-toggle="modal"
                         data-bs-target="#editProduct"
                         onclick="saveDataOrderItem(${item.ProductId})">
@@ -50,10 +96,11 @@ const getAllProduct = async () => {
                     <button
                         class="btn btn-danger"
                         onclick='deleteProduct(${item.ProductId})'>Delete</button>
-                </td>
-            </tr > `
+                        </p>
+                    </div>
+                </div>`
         })
-        $('#bodyTableProduct').append(dataAppend);
+        $('#appProduct').append(dataAppend);
     }
 }
 
@@ -64,6 +111,7 @@ const addProduct = async () => {
         Quantity: $('#QuantityAddProduct').val(),
         Description: $('#DescriptionAddProduct').val(),
         Status: $('#StatusAddProduct').val() === '1' ? true : false,
+        Picture: $('#PictureAddProduct').val(),
     }
     const url = `https://localhost:44312/api/Product/AddProduct`;
     const response = await fetch(url, {
@@ -75,14 +123,15 @@ const addProduct = async () => {
         body: JSON.stringify(data),
     })
     const dataResponse = await response.json();
-    const dataAppend = `<tr>
-                <td>${dataResponse.Name}</td>
-                <td>${dataResponse.Price}</td>
-                <td>${dataResponse.Quantity}</td>
-                <td>${dataResponse.Description}</td>
-                <td id="status_${dataResponse.ProductId}">${dataResponse.Status === true ? 'Active' : 'Closed'}</td>
-                <td>
-                    <button class="btn btn-secondary"
+    const dataAppend = `<div class="card" style="width: 18rem;">
+                    <img src=${dataResponse.Picture} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${dataResponse.Name}</h5>
+                        <p class="card-text">${dataResponse.Description}.</p>
+                        <p class="card-text">$${dataResponse.Price}.</p>
+                        <p class="card-text">Quantity: ${dataResponse.Quantity}.</p>
+                        <p>
+                            <button class="btn btn-secondary"
                         data-bs-toggle="modal"
                         data-bs-target="#editProduct"
                         onclick="saveDataOrderItem(${dataResponse.ProductId})">
@@ -90,9 +139,10 @@ const addProduct = async () => {
                     <button
                         class="btn btn-danger"
                         onclick='deleteProduct(${dataResponse.ProductId})'>Delete</button>
-                </td>
-            </tr > `
-    $('#bodyTableProduct').append(dataAppend);
+                        </p>
+                    </div>
+                </div>`
+    $('#appProduct').append(dataAppend);
     resetDataForm();
 }
 
@@ -111,6 +161,7 @@ const editProduct = async () => {
         Price: $('#PriceEditProduct').val(),
         Quantity: $('#QuantityEditProduct').val(),
         Description: $('#DescriptionEditProduct').val(),
+        Picture: $('#PictureEditProduct').val(),
         Status: $('#StatusEditProduct').val(),
     }
     const url = `https://localhost:44312/api/Product/UpdateProduct`;

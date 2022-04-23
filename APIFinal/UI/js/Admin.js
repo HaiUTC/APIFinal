@@ -62,6 +62,45 @@ const addAdmin = async () => {
     resetDataForm();
     window.location.reload();
 }
+
+const handleSearch = async () => {
+    const name = $('#searchAdmin').val();
+    if (name !== "" || name !== null) {
+        const url = `https://localhost:44312/api/Admin/SearchAdmin?name=${name}`;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+        const data = await response.json();
+        if (data.length === 0) {
+            $('#bodyTableCustomer').html('<div style="display: flex; justify-content=center; padding-top: 15px;">Not have customer in store</div>')
+        }
+        else {
+            let dataAppend = '';
+            data.map((item, index) => {
+                dataAppend += `<tr>
+                <td>${item.UserName}</td>
+                <td>${item.Email}</td>
+                <td>
+                    <button class="btn btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editAdmin"
+                        onclick="saveDataAdminItem(${item.AdminId})">
+                        Edit</button>
+                    <button class='btn btn-danger' onclick="deleteAdmin(${item.AdminId})">Delete</button>
+                </td>
+            </tr > `
+            })
+            $('#bodyTableAdmin').html(dataAppend);
+        }
+    } else {
+        getAllAdmin();
+    }
+
+}
 const editAdmin = async () => {
     const data = {
         AdminId: $('#AdminIdEditAdmin').val(),

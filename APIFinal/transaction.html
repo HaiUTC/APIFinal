@@ -45,7 +45,7 @@
                     <i class="fa-solid fa-user mr-2"></i>  Thanh Hai
                     <div class="admin_select">
                         <ul>
-                            <li><i class="fa-solid fa-users mr-2"></i> All Admin</li>
+                            <li><a href="/admin.html"><i class="fa-solid fa-users mr-2" onclick="goToAdmin()"></i> All Admin</a></li>
                             <li><i class="fa-solid fa-lock-keyhole mr-2"></i>  Change Password</li>
                             <li id="logout"><i class="fa-solid fa-right-from-bracket mr-2"></i>  Logout</li>
                         </ul>
@@ -58,7 +58,14 @@
     </header>
     <div class="container" id="appOrder">
         <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#addTransaction">Add transaction</button>
-
+        <div class="input-group mb-3">
+            <div class="form-outline">
+                <input type="search" id="searchTransaction" class="form-control" placeholder="Search" />
+            </div>
+            <button type="button" class="btn btn-primary" onclick="handleSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
         <table class="table table-hover">
             <thead class="table-dark">
                 <tr>
@@ -95,6 +102,35 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" onclick="addTransaction()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal add order-->
+        <div class="modal fade" id="editTransaction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit transaction</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <input hidden id="TransactionIdEditTransaction" />
+                            <div class="mb-4">
+                                <label class="form-label" for="inputEmail">Account Number</label>
+                                <input type="text" class="form-control" id="AccountNumberEditTransaction" placeholder="Account Number">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="inputEmail">Amount</label>
+                                <input type="number" class="form-control" id="AmountEditTransaction" placeholder="Amount">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="editTransaction()">Edit</button>
                     </div>
                 </div>
             </div>

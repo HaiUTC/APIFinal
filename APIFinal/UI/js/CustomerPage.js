@@ -137,6 +137,48 @@ const deleteCustomer = async (id) => {
         window.location.reload()
     }
 }
+
+const handleSearch = async () => {
+    const name = $('#searchCustomer').val();
+    if (name !== "" || name !== null) {
+        const url = `https://localhost:44312/api/User/SearchCustomer?name=${name}`
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        })
+        const data = await response.json();
+        if (data.length === 0) {
+            $('#bodyTableCustomer').html('<div style="display: flex; justify-content=center; padding-top: 15px;">Not have customer in store</div>')
+        }
+        else {
+            let dataAppend = '';
+            data.map((item, index) => {
+                dataAppend += `<tr>
+                <td>${item.Name}</td>
+                <td>${item.Email}</td>
+                <td>${item.PhoneNumber}</td>
+                <td>${item.AddressDetail}, ${item.Province}, ${item.City}</td>
+                <td id="status_${item.UserId}">${item.Active === 1 ? 'Active' : 'Closed'}</td>
+                <td>
+                    <button class="btn btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCustomer"
+                        onclick="saveDataCustomerItem(${item.UserId})">
+                        Edit</button>
+                    <button class='btn btn-danger' onclick='deleteCustomer(${item.UserId})'>Delete</button>
+                </td>
+            </tr > `
+            })
+            $('#bodyTableCustomer').html(dataAppend);
+        }
+    } else {
+        getAllCustomer();
+    }
+    
+}
 $(document).ready(function () {
     localStorage.getItem("admin") === null ? (window.location.href = '/login.html') : null;
     $('#logout').click(() => {

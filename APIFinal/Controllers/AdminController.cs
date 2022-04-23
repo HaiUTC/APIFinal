@@ -24,6 +24,17 @@ namespace APIFinal.Controllers
         }
 
         [HttpGet]
+        public List<Admin> SearchAdmin(string name)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            if (name == null)
+            {
+                return ctx.Admins.ToList();
+            }
+            return ctx.Admins.Where(x => x.UserName.Contains(name)).ToList();
+        }
+
+        [HttpGet]
         public Admin Admins(int AdminId)
         {
             APIFinalDataContext ctx = new APIFinalDataContext();

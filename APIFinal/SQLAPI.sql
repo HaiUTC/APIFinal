@@ -24,6 +24,7 @@ create table Product(
 	Price float,
 	Quantity tinyint,
 	Description nvarchar(50),
+	Picture nvarchar(300),
 	Status bit default(1) 
 )
 

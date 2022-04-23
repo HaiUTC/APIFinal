@@ -18,10 +18,7 @@ namespace APIFinal.Controllers
             {
                 return ctx.OrderRenders.ToList();
             } 
-                return ctx.OrderRenders.Where(x => x.Fulfillment_Status != "success").ToList();
-            
-
-
+                return ctx.OrderRenders.Where(x => x.Fulfillment_Status == null).ToList();
         }
 
         [HttpGet]
@@ -94,18 +91,18 @@ namespace APIFinal.Controllers
         }
 
         [HttpPut]
-        public bool UpdateOrder(int id, string address, string shipcode)
+        public bool UpdateOrder(int OrderId, string Address, string ShipCode)
         {
             try
             {
                 APIFinalDataContext ctx = new APIFinalDataContext();
-                Order currentOrder = ctx.Orders.FirstOrDefault(x => x.OrderId == id);
+                Order currentOrder = ctx.Orders.FirstOrDefault(x => x.OrderId == OrderId);
                 if (currentOrder == null)
                 {
                     return false;
                 }
-                currentOrder.ShipCode = shipcode;
-                currentOrder.Address = address;
+                currentOrder.ShipCode = Address;
+                currentOrder.Address = ShipCode;
                 ctx.SubmitChanges();
                 return true;
             }

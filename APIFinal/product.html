@@ -45,7 +45,7 @@
                     <i class="fa-solid fa-user mr-2"></i>  Thanh Hai
                     <div class="admin_select">
                         <ul>
-                            <li><i class="fa-solid fa-users mr-2" onclick="goToAdmin()"></i> All Admin</li>
+                            <li><a href="/admin.html"><i class="fa-solid fa-users mr-2" onclick="goToAdmin()"></i> All Admin</a></li>
                             <li><i class="fa-solid fa-lock-keyhole mr-2"></i>  Change Password</li>
                             <li id="logout"><i class="fa-solid fa-right-from-bracket mr-2"></i>  Logout</li>
                         </ul>
@@ -56,23 +56,33 @@
 
         </nav>
     </header>
-    <div class="container" id="appOrder">
+    <div class="container">
         <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#addProduct">Add product</button>
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="search" id="searchProduct" class="form-control" placeholder="Search"/>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="handleSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <!--<table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTableProduct">
+        </tbody>
+    </table>-->
+        <div class="row" id="appProduct">
 
-        <table class="table table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="bodyTableProduct">
-            </tbody>
-        </table>
+        </div>
         <!-- Modal add product-->
         <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -98,6 +108,11 @@
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">Description</label>
                                 <textarea rows="3" class="form-control" id="DescriptionAddProduct" placeholder="Description"></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label" for="inputEmail">Picture</label>
+                                <input type="text" class="form-control" id="PictureAddProduct" placeholder="Picture">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">Status</label>
@@ -127,7 +142,7 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <input hidden id="ProductIdEditProduct"/>
+                            <input hidden id="ProductIdEditProduct" />
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">Name</label>
                                 <input type="text" class="form-control" id="NameEditProduct" placeholder="Name">
@@ -143,6 +158,10 @@
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">Description</label>
                                 <textarea rows="3" class="form-control" id="DescriptionEditProduct" placeholder="Description"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label" for="inputEmail">Picture</label>
+                                <input type="text" class="form-control" id="PictureEditProduct" placeholder="Picture">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="inputEmail">Status</label>

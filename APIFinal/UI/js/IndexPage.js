@@ -26,16 +26,7 @@ const getAllOrder = async () => {
                 <td>${item.Price}</td>
                 <td>${item.Fulfillment_Status === 'success' ? 'Success' : item.Fulfillment_Status === 'reject' ? 'Reject' : 'Pending'}</td>
                 <td>
-                    <button class="btn btn-secondary"
-                        id="idd_${index}"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editOrder"
-                        data-id="${item.OrderId}"
-                        data-address="${item.Address}"
-                        data-shipcode="${item.ShipCode}"
-                        onclick="saveDataOrderItem(${index})">
-                        Edit</button>
-                    <button class='btn btn-danger' onclick="deleteAdmin(${item.OrderId})">Delete</button>
+                    <button class='btn'>Transaction</button>
                 </td>
             </tr > `
         })
@@ -55,8 +46,11 @@ const saveDataOrderItem = (index) => {
 }
 
 const editOrder = async () => {
-    const response = await fetch('https://localhost:44312/api/Order/UpdateOrder?id=${orderId}&address=${address}&shipcode=${shipcode}', {
-        method: 'POST',
+    const orderId = $('#orderIdEditOrder').val();
+    const address = $(`#addressEditOrder`).val();
+    const shipcode = $(`#shipcodeEditOrder`).val();
+    const response = await fetch(`https://localhost:44312/api/Order/UpdateOrder?OrderId=${orderId}&Address=${address}&ShipCode=${shipcode}`, {
+        method: 'PUT',
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -64,8 +58,12 @@ const editOrder = async () => {
     })
     const data = await response.json();
     if (data) {
-        window.location.reload();
+        /*window.location.reload();*/
     }
+}
+
+const cancelOrder = async (id) => {
+
 }
 
 

@@ -23,6 +23,17 @@ namespace APIFinal.Controllers
             return ctx.Transactions.FirstOrDefault(x => x.TransactionId == TransactionId);
         }
 
+        [HttpGet]
+        public List<Transaction> SearchTransaction(string Account_Number)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            if (Account_Number == null)
+            {
+                return ctx.Transactions.ToList();
+            }
+            return ctx.Transactions.Where(x => x.Account_Number.Contains(Account_Number)).ToList();
+        }
+
         [HttpPost]
         public Transaction AddTransaction([FromBody] Transaction trans)
         {
@@ -33,6 +44,42 @@ namespace APIFinal.Controllers
                 ctx.Transactions.InsertOnSubmit(transaction);
                 ctx.SubmitChanges();
                 return transaction;
+        }
+
+        [HttpDelete]
+        public bool DeleteTransaction(int TransactionId)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            var tran = ctx.Transactions.FirstOrDefault(x => x.TransactionId == TransactionId);
+            if (tran == null)
+            {
+                return false;
+            }
+            ctx.Transactions.DeleteOnSubmit(tran);
+            ctx.SubmitChanges();
+            return true;
+        }
+
+        [HttpPut]
+        public bool TriggerTransaction(int OrderId, int TransactionId)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            try
+            {
+                var tran = ctx.Transactions.FirstOrDefault(x => x.TransactionId == TransactionId);
+                if (tran == null)
+                {
+                    return false;
+                }
+                tran.OrderId = OrderId;
+                tran.isCapture = true;
+                ctx.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

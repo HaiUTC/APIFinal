@@ -25,6 +25,17 @@ namespace APIFinal.Controllers
             return ctx.Customers.FirstOrDefault(x => x.UserId == UserId);
         }
 
+        [HttpGet]
+        public List<Customer> SearchCustomer(string name)
+        {
+            APIFinalDataContext ctx = new APIFinalDataContext();
+            if(name == null)
+            {
+                return ctx.Customers.ToList();
+            }
+            return ctx.Customers.Where(x => x.Name.Contains(name)).ToList();
+        }
+
         [HttpPost]
         public Customer AddCustomer([FromBody] Customer cus)
         {
